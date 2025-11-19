@@ -68,6 +68,11 @@
             margin: 20px 0;
             background: #f9f9ff; /* Очень светлый фон для цитаты */
         }
+        
+        blockquote.quote {
+             margin-left: 0;
+             margin-right: 0;
+        }
 
         #progress-bar {
             height: 8px;
@@ -104,7 +109,7 @@
             font-size: 1.1em;
             transition: background-color 0.3s;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: block; /* Сделать кнопку блочным элементом */
+            display: block; 
             width: fit-content;
             margin-left: auto;
             margin-right: auto;
@@ -122,7 +127,7 @@
             padding: 20px;
             margin-top: 20px;
             border-radius: 8px;
-            min-height: 150px; /* Фиксированная высота для статичности */
+            min-height: 150px; 
         }
         
         #daily-midah-content h3 {
@@ -142,6 +147,15 @@
         .reflection-area p {
             font-weight: normal;
         }
+        
+        .shavuot-section .quote-source {
+            display: block;
+            text-align: right;
+            margin-top: 5px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
     </style>
 </head>
 <body>
@@ -151,7 +165,7 @@
 
     <div class="intro">
         <p><strong>Сфират а-Омер</strong> — это лестница из 49 ступеней, ведущая к лучшей версии себя. 49 дней — 49 встреч с собой.</p>
-        <p>Это время духовной работы над мидот (качествами), следуя принципам Мусар (духовное движение этики и морали, сосредоточенное на самоанализе, осознанности и медитации).</p>
+        <p>Это время духовной работы над **мидот (качествами)**, следуя принципам **Мусар (духовное движение этики и морали, сосредоточенное на самоанализе, осознанности и медитации)**.</p>
     </div>
 
     <div class="quote">
@@ -171,20 +185,28 @@
     
     <div class="shavuot-section">
         <h2>Праздник Дарования Торы (Шавуот)</h2>
-        <p>Почему праздник Шавуот называется Хаг Матан Тора (Дарование Торы), а не «Получение Торы»?</p>
+        <p>Почему праздник Шавуот называется **Хаг Матан Тора (Дарование Торы)**, а не «Получение Торы»?</p>
         
-        <p>На Синае народ сказал: “Наасе ве-нишма” (Будем исполнять и слушать) — полное принятие.</p>
+        <p>Ведь на Синае народ сказал: **“Наасе ве-нишма” (Будем исполнять и слушать)** — полное принятие.</p>
         
-        <p>Мудрецы объясняют:</p>
-        <ul>
-            <li>Дарование — акт Творца.</li>
-            <li>Получение — выбор человека, требующий зрелости и свободы.</li>
-        </ul>
+        <p>Но мудрецы объясняют:</p>
+        <p>Тора была дана однажды — но принимается заново каждым поколением и каждым сердцем.</p>
         
         <blockquote class="quote">
-            “Синай учит нас, что истина не навязывается человеку. Он должен выйти ей навстречу.”
+            <p>“Синай учит нас, что истина не навязывается человеку. Он должен выйти ей навстречу.” Даже на Синае Тора не могла быть получена насильно.</p>
+            <span class="quote-source">— Рав Йосеф Дов Соловейчик</span>
         </blockquote>
-        <p>Принять Дар можно лишь по мере аводат а-мидот (работы над собой). Работа над мидот — это не борьба с собой, а раскрытие внутреннего света.</p>
+        
+        <p>Дарование — акт Творца. Получение — выбор человека, требующий зрелости и свободы.</p>
+        
+        <p>Хасидизм учит:</p>
+        <p>“Каждый год в Шавуот Тора заново нисходит в духовных мирах.” Но принять её можно лишь по мере **аводат а-мидот (работы над собой)**.</p>
+        
+        <blockquote class="quote">
+            <p>“Каждая душа на Синае слышала свой особый разговор.”</p>
+            <span class="quote-source">— Рав Кук</span>
+        </blockquote>
+        <p>Дар один — но Тору каждый получает по-своему. И потому мы празднуем — дар. Чтобы быть готовыми — принять.</p>
     </div>
 
 </div>
@@ -218,7 +240,6 @@
         const dayMidahIndex = stepIndex % 7;
         
         const dayNumber = stepIndex + 1;
-        const weekNumber = weekMidahIndex + 1;
         
         const weekMidah = midot[weekMidahIndex];
         const dayMidah = midot[dayMidahIndex];
@@ -248,7 +269,13 @@
             const dayMidah = midot[currentStep % 7].name;
             
             stepDisplay.textContent = `Текущая Ступень ${currentStep + 1} — ${dayMidah} в аспекте ${weekMidah}`;
-            nextStepButton.textContent = `Подняться на Ступень ${currentStep + 2} (если это не последний шаг)`;
+            
+            const nextStepNumber = currentStep + 2;
+            if (nextStepNumber <= totalSteps) {
+                nextStepButton.textContent = `Подняться на Ступень ${nextStepNumber}`;
+            } else {
+                 nextStepButton.textContent = `Завершить Восхождение`;
+            }
 
             updateProgress(currentStep + 1);
 
